@@ -1,33 +1,24 @@
-# EKS
+Create the AKS cluster 
 
-1.Create the IAM role with adminacess
+      https://k21academy.com/microsoft-azure/az-104/create-aks-cluster-step-by-step-procedure/
 
-2. Install the eksctl 
+**Connect to the Azure Kubernetes Cluster**
+There are two ways to connect the AKS cluster:
+I) Using Cloud Shell
+II) Using Azure CLI
 
-curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp  
+I am going to cover how do we connect using Cloud Shell. We can see the option on top of our screen (marked red in the below image).
 
-sudo mv /tmp/eksctl /usr/local/bin
+Cloud shell
+Step 1: Run the following command, on the Azure bash shell:
 
-  'Test the version
-```eksctl version```
    
-3.Install the kubectl. Dowload the kubectl
+  $ az aks get-credentials --resource-groups <name of resource group> --name <name of cluster
 
-Reference Link :https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+Cloud shell
+Check Out: Best Kubernetes Monitoring Tools. Click here
 
-     curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.18.9/2020-11-02/bin/linux/amd64/kubectl
+Step 2: To get the Nodes running in our cluster, run the following command, and you will see all the nodes in your AKS cluster.
 
-
-4. Apply execute permissions to the binary.
-
-        chmod +x ./kubectl
-      
-5.Copy the binary to a folder in your PATH. If you have already installed a version of kubectl , then we recommend creating a $HOME/bin/kubectl and ensuring that $HOME/bin comes first in your $PATH.
-
-
-        mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
-        
-  #Create the EKS
-  
-  eksctl create cluster -f createcluster.yaml
-        
+   
+  $ kubectl get nodes
